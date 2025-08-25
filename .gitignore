@@ -1,0 +1,28 @@
+# Ignore C++ object files
+*.o
+*.obj
+
+# Ignore build directories (common for C++ projects)
+build/
+bin/
+obj/
+/build/
+/dist/
+
+# Ignore dependency directories
+node_modules/
+vendor/
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore environment variables and secrets
+.env
+*.env.local
+
+# Ignore OS-specific and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
