@@ -1,6 +1,5 @@
-//PRACTICE
-
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -24,20 +23,24 @@ class Node{
 
 class AVLtree{
     Node *root;
+    int noOfNodes;
 
     public:
         AVLtree();
+
+        double Height();
 
         Node* LLRotation(Node* p);
         Node* LRRotation(Node* p);
         Node* RRRotation(Node* p);
         Node* RLRotation(Node* p);
 
-        void RInsert(int);
-        Node* RInsert(Node* p, int);
+        void Insert(int);
+        Node* Insert(Node* p, int);
 
         void InOrder();
         void InOrder(Node* p);
+        void LevelOrder();
 };
 
 //----------------------N O D E   C L A S S   F X N S-----------------------
@@ -155,20 +158,32 @@ AVLtree :: AVLtree(){
     root = NULL;
 }
 
-void AVLtree :: RInsert(int Key){
-    root = RInsert(root, Key);
+double AVLtree :: Height() {
+    return log(noOfNodes);
 }
 
-Node* AVLtree :: RInsert(Node* p, int Key){
+void AVLtree :: Insert(int Key){
+    cout << "Initially tree " << endl;
+    LevelOrder();
+
+    root = Insert(root, Key);
+
+    cout << "After insertion " << endl;
+    LevelOrder();
+}
+
+Node* AVLtree :: Insert(Node* p, int Key){
+    noOfNodes++;
+
     if(p == NULL){
         Node *t = new Node(Key);
         return t;
     }
 
     if(Key < p->Data){
-        p->Lchild = RInsert(p->Lchild, Key);
+        p->Lchild = Insert(p->Lchild, Key);
     }else if(Key > p->Data){
-        p->Rchild = RInsert(p->Rchild, Key);
+        p->Rchild = Insert(p->Rchild, Key);
     }
 
     p->Height = p->NodeHeight();
@@ -200,24 +215,67 @@ void AVLtree :: InOrder(Node* p){
     }
 }
 
+void AVLtree :: LevelOrder(){
+    if(root) {
+        queue<Node *> q;
+        q.push(root);    
+
+        int totalHeight = Height();
+        int level = 0;
+
+        while (!q.empty()) {
+            int levelSize = q.size();  
+            for (int i = 0; i < ((totalHeight-level)/2); ++i) {
+                cout << "   "; 
+            }
+
+            for (int i = 0; i < levelSize; ++i) {
+                Node* node = q.front();  
+                cout << node->Data << "   ";  
+                q.pop();  
+                
+                if (node->Lchild != nullptr)
+                    q.push(node->Lchild);
+                
+                if (node->Rchild != nullptr)
+                    q.push(node->Rchild);
+            }
+            cout << endl;  
+            level++;
+        }
+    }
+}
+
 //-----------------------------M A I N-----------------------------
 
 int main(){
     AVLtree A;
-    A.RInsert(20);
-    A.RInsert(10);
-    A.RInsert(30);
 
-    A.RInsert(5);
-    A.RInsert(15);
-    A.RInsert(25);
-    A.RInsert(40);
+    // A.Insert(20);
+    // A.Insert(10);
+    // A.Insert(30);
 
-    A.RInsert(4);
-    A.RInsert(28);
-    A.RInsert(50);
+    // A.Insert(5);
+    // A.Insert(15);
+    // A.Insert(25);
+    // A.Insert(40);
 
-    A.InOrder();
+    // A.Insert(4);
+    // A.Insert(28);
+    // A.Insert(50);
+
+    char ch = 'Y';
+    while(ch=='Y'||ch=='y') {
+        int x = -1;
+        cout << "Insert node value : ";
+        cin >> x;
+        fflush(stdin);
+        
+        A.Insert(x);
+
+        cout << "Do you want to continue adding nodes ? (y/n) ";
+        ch = getchar();
+    }
 
     return 0;
 }
