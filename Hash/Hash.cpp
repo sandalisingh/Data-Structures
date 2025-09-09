@@ -44,6 +44,11 @@ int Hash :: LinearProbing(int key){
     
     while(H[(index + i)%size] != 0){
         i++;
+
+        if(i==size) {
+            cout << "\nTable full!";
+            return -1;
+        }
     }
 
     return ((index + i)%size) ;
@@ -55,6 +60,11 @@ int Hash :: QuadraticProbing(int key){
     
     while(H[(index + i*i)%size] != 0){
         i++;
+
+        if(i==size) {
+            cout << "\nTable full!";
+            return -1;
+        }
     }
 
     return ((index + i*i)%size) ;
@@ -67,7 +77,7 @@ void Hash :: Insert_LinearProbing(int key){
         index = LinearProbing(key);
     }
 
-    H[index] = key;
+    if(index!=-1) H[index] = key;
 }
 
 void Hash :: Insert_QuadraticProbing(int key){
@@ -77,7 +87,7 @@ void Hash :: Insert_QuadraticProbing(int key){
         index = QuadraticProbing(key);
     }
 
-    H[index] = key;
+    if(index!=-1) H[index] = key;
 }
 
 void Hash :: Display(){
@@ -103,27 +113,61 @@ int Hash :: Search(int key){
 
     while(H[(index + i) % size] != key){
         i++;
+
+        if(i==size) return -1;
     }
 
     return ((index + i) % size) ;
 }
 
-int main(){
+int main() {
     Hash H;
+    int option = -1;
 
-    // H.Insert_LinearProbing(12);
-    // H.Insert_LinearProbing(25);
-    // H.Insert_LinearProbing(35);
-    // H.Insert_LinearProbing(26);
+    while(option != 5) {
+        cout << "\n\n----------------------------------------------------";
+        cout << "\n\n\t\tHASH TABLE : MENU";
+        cout << "\n1. Insert using Linear Probing";
+        cout << "\n2. Insert using Quadratic Probing";
+        cout << "\n3. Search key";
+        cout << "\n4. Display hash table";
+        cout << "\n5. Exit";
+        cout << "\n--> Select any one of the above options (1-5) : ";
+        cin.sync();
+        cin >> option;
 
-    H.Insert_QuadraticProbing(23);
-    H.Insert_QuadraticProbing(43);
-    H.Insert_QuadraticProbing(13);
-    H.Insert_QuadraticProbing(27);
-
-    H.Display();
-
-    cout<<"\n\n\n35 found at index "<<H.Search(35)<<"\n\n\n";
-    
+        switch(option) {
+            cin.sync();
+            case 1: {
+                int x;
+                cout << "\nEnter value to insert (Linear Probing): ";
+                cin >> x;
+                H.Insert_LinearProbing(x);
+            } break;
+            case 2: {
+                int x;
+                cout << "\nEnter value to insert (Quadratic Probing): ";
+                cin >> x;
+                H.Insert_QuadraticProbing(x);
+            } break;
+            case 3: {
+                int x;
+                cout << "\nEnter value to search: ";
+                cin >> x;
+                int index = H.Search(x);
+                if(index != -1)
+                    cout << "\nKey " << x << " found at index " << index;
+                else
+                    cout << "\nKey " << x << " not found!";
+            } break;
+            case 4: {
+                H.Display();
+            } break;
+            case 5: {
+                return 0;
+            } break;
+            default: cout << "\nWrong option selected !!";
+        }
+    }
     return 0;
 }
