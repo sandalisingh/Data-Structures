@@ -1,17 +1,19 @@
 #include <iostream>
 using namespace std;
 
+#ifndef SparseMatrix_h
+#define SparseMatrix_h
+
 struct Node {
     int row, col, val;
     Node* next;
 };
 
 class SparseMatrix {
-private:
+public:
     int rows, cols;
     Node* head;   
 
-public:
     SparseMatrix(int r, int c) {
         rows = r;
         cols = c;
@@ -25,9 +27,12 @@ public:
         temp->val = v;
         temp->next = nullptr;
 
-        if (head == nullptr)
+        if (head == nullptr) {
+            // list is empty
+            // insert at beginning
             head = temp;
-        else {
+        } else {
+            // add at the end
             Node* p = head;
             while (p->next != nullptr)
                 p = p->next;
@@ -75,20 +80,42 @@ public:
 };
 
 int main() {
-    int rows, cols, n;
+    int rows, cols, n, choice;
+    
     cout << "Enter dimensions of the Sparse Matrix";
     cout << "\n\t- Rows : ";
-    cin >> rows ;
+    cin >> rows;
     cout << "\t- Cols : ";
     cin >> cols;
-    cout << "Enter number of non-zero elements: ";
-    cin >> n;
-
+    
     SparseMatrix sm(rows, cols);
-    sm.Create(n);
-
-    cout << "\nSparse Matrix:\n";
-    sm.Display();
+    
+    do {
+        cout << "\n1. Insert elements\n";
+        cout << "2. Display matrix\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        
+        switch(choice) {
+            case 1:
+                cout << "Enter number of non-zero elements: ";
+                cin >> n;
+                sm.Create(n);
+                break;
+            case 2:
+                cout << "\nSparse Matrix:\n";
+                sm.Display();
+                break;
+            case 3:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+    } while(choice != 3);
 
     return 0;
 }
+
+#endif 
