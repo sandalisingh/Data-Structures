@@ -516,57 +516,57 @@ int main() {
     cout<<"\n\nCREATE TREE\n";
     T.CreateTree();
 
-    // // //-------------PRE ORDER--------------------------
-    cout<<"\n\nPREOREDR RECURSION\n";
-    T.PreOrder_Recursion();
+    // // // //-------------PRE ORDER--------------------------
+    // cout<<"\n\nPREOREDR RECURSION\n";
+    // T.PreOrder_Recursion();
 
-    cout<<"\n\nPREOREDR ITERATION\n";
-    T.PreOrder_Iteration();
+    // cout<<"\n\nPREOREDR ITERATION\n";
+    // T.PreOrder_Iteration();
 
     //-------------IN ORDER--------------------------
-    cout<<"\n\nTRAVERSAL\n";
-    cout<<"\n\nINOREDR RECURSION\n";
+    // cout<<"\n\nTRAVERSAL\n";
+    cout<<"\n\nINORDER TRAVERSAL\n";
     T.InOrder_Recursion();
 
-    cout<<"\n\nPREOREDR RECURSION\n";
-    T.PreOrder_Recursion();
+    // cout<<"\n\nPREOREDR RECURSION\n";
+    // T.PreOrder_Recursion();
 
-    cout<<"\n\nPOSTOREDR RECURSION\n";
-    T.PostOrder_Recursion();
+    // cout<<"\n\nPOSTOREDR RECURSION\n";
+    // T.PostOrder_Recursion();
 
-    cout<<"\n\nINOREDR ITERATION\n";
-    T.InOrder_Iteration();
+    // cout<<"\n\nINOREDR ITERATION\n";
+    // T.InOrder_Iteration();
     
-    // //-------------POST ORDER--------------------------
-    cout<<"\n\nPOSTOREDR RECURSION\n";
-    T.PostOrder_Recursion();
+    // // //-------------POST ORDER--------------------------
+    // cout<<"\n\nPOSTOREDR RECURSION\n";
+    // T.PostOrder_Recursion();
 
-    // // cout<<"\n\nPOSTOREDR ITERATION\n";
-    // // T.PostOrder_Iteration();
+    // // // cout<<"\n\nPOSTOREDR ITERATION\n";
+    // // // T.PostOrder_Iteration();
 
-    cout<<"\n\nLEVEL OREDR\n";
-    T.LevelOrder();
+    // cout<<"\n\nLEVEL OREDR\n";
+    // T.LevelOrder();
 
-    int H = T.Height();
-    cout<<"\n\nHEIGHT = "<<H;
+    // int H = T.Height();
+    // cout<<"\n\nHEIGHT = "<<H;
 
-    // int count = T.countNode();
+    // // int count = T.countNode();
+    // // cout<<"\n\nNumber of Nodes = "<<count;
+
+    // int count = T.count();
     // cout<<"\n\nNumber of Nodes = "<<count;
 
-    int count = T.count();
-    cout<<"\n\nNumber of Nodes = "<<count;
+    // // count = T.CountLeafNodes();
+    // // cout<<"\n\nNumber of Nodes with 0 children (LEAF NODES) = "<<count;
 
-    // count = T.CountLeafNodes();
-    // cout<<"\n\nNumber of Nodes with 0 children (LEAF NODES) = "<<count;
+    // // count = T.CountInternalNodes();
+    // // cout<<"\n\nNumber of Nodes with 1/2 children (NON LEAF NODES) = "<<count;
 
-    // count = T.CountInternalNodes();
-    // cout<<"\n\nNumber of Nodes with 1/2 children (NON LEAF NODES) = "<<count;
-
-    count = T.count_Nodes_deg2();
-    cout<<"\n\nNumber of Nodes with 2 children = "<<count;
+    // count = T.count_Nodes_deg2();
+    // cout<<"\n\nNumber of Nodes with 2 children = "<<count;
  
-    int Sum = T.SumOfAllElements();
-    cout<<"\n\nSUM = "<<Sum<<endl;
+    // int Sum = T.SumOfAllElements();
+    // cout<<"\n\nSUM = "<<Sum<<endl;
 
     return 0;
 }

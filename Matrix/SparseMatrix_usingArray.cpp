@@ -43,15 +43,9 @@ void SparseMatrix :: Create() {
 }
 
 void SparseMatrix :: Display() {
-    int k = 0;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (k < num && ele[k].row == i && ele[k].col == j)
-                cout << ele[k++].val << " ";
-            else
-                cout << "0 ";
-        }
-        cout << endl;
+    cout<<"\nRow\tCol\tValue\n";
+    for (int i = 0; i < num; i++) {
+        cout << ele[i].row << "\t" << ele[i].col << "\t" << ele[i].val << "\n";
     }
 }
 
@@ -68,7 +62,7 @@ int main() {
     SparseMatrix SM(rows, cols, n);
     SM.Create();
 
-    cout << "\nSparse Matrix:\n";
+    cout << "\nSparse Matrix in Compressed Row Form:\n";
     SM.Display();
 
     return 0;

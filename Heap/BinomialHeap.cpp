@@ -16,6 +16,19 @@ class BinomialHeap {
 private:
     Node* head;
 
+    // Helper to print a single binomial tree (rooted at 'node') with indentation
+    void printTree(Node* node, int indent) {
+        if (!node) return;
+        for (int i = 0; i < indent; ++i) cout << ' ';
+        cout << node->key << "\n";
+        // Print all children (child is head of sibling-linked list of children)
+        Node* child = node->child;
+        while (child) {
+            printTree(child, indent + 4);
+            child = child->sibling;
+        }
+    }
+
     // Merge two binomial heaps
     Node* merge(Node* h1, Node* h2) {
         if (!h1) return h2;
@@ -151,6 +164,21 @@ public:
     // Check if heap is empty
     bool isEmpty() {
         return head == nullptr;
+    }
+
+    // Display the entire binomial heap in a readable form
+    void display() {
+        if (!head) {
+            cout << "Heap is empty\n";
+            return;
+        }
+        cout << "\nBinomial Heap:\n";
+        Node* curr = head;
+        while (curr) {
+            cout << "B" << curr->degree << "-tree (root=" << curr->key << "):\n";
+            printTree(curr, 2);
+            curr = curr->sibling;
+        }
     }
 };
 
